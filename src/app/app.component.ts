@@ -1,9 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
 import { UserComponent } from "./components/user/user.component";
+import { InputOutputComponent } from "./components/input-output/input-output.component";
 
 @Component({
   selector: 'app-root',
-  imports: [UserComponent],
+  imports: [UserComponent, InputOutputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
