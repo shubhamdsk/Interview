@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, computed, signal } from '@angular/core';
+import { UserComponent } from "./components/user/user.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [UserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'Interview';
+  // writable signal
+  readonly itemCount = signal(2);
+  readonly pricePerItem = signal(500);
+
+  // computed signal
+  readonly totalPrice = computed(() => {
+    return this.itemCount() * this.pricePerItem();
+  })
+
+  increaseQuantity(): void {
+    this.itemCount.update((item) => item + 1);
+  }
+
+  decreaseQuantity(): void {
+    this.itemCount.update((item) => Math.max(0, item - 1));
+  }
+
 }
